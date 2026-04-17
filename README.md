@@ -1,19 +1,25 @@
-# 📊 Breast Cancer Survival Analysis — EDA & Statistical Hypotheses
+# 🧬 Breast Cancer Survival Predictor
 
-Projeto de **Análise Exploratória de Dados (EDA)** aplicado a um dataset clínico de **câncer de mama**, com foco na investigação de padrões estatísticos, outliers, correlações e hipóteses relacionadas à sobrevivência dos pacientes.
+Projeto desenvolvido na disciplina de **Machine Learning** — 5º Período de Ciência da Computação — **UNINASSAU Aracaju**, como parte do **1º MVP Data IA Health**, alinhado ao **ODS 3 — Saúde e Bem-Estar** da ONU.
 
 ---
 
 ## 🎯 Objetivo
 
-O objetivo deste projeto é compreender como variáveis clínicas, tumorais e hormonais impactam o **tempo de sobrevivência dos pacientes**, utilizando análise exploratória e testes estatísticos.
+Desenvolver uma solução baseada em **Aprendizado de Máquina supervisionado** para classificação de risco em pacientes com câncer de mama, prevendo o desfecho clínico — **óbito ou sobrevivência** — com base em variáveis clínicas, tumorais e hormonais. A solução será entregue como uma **aplicação mobile** integrada a um modelo preditivo treinado em Python.
 
-A análise busca responder perguntas como:
+---
 
-* Pacientes com status hormonal positivo sobrevivem mais?
-* Tumores maiores estão associados ao óbito?
-* O número de linfonodos positivos influencia a sobrevida?
-* O estágio do tumor afeta o prognóstico?
+## 🧪 Problema
+
+O projeto é modelado como **classificação binária supervisionada**, tendo como variável alvo `Status` (Alive / Dead).
+
+A análise exploratória confirmou padrões estatisticamente significativos que sustentam a viabilidade do modelo:
+
+- Linfonodos positivos → maior mortalidade (p = 1.53e-61)
+- Tumores maiores → associados ao óbito (p = 1.24e-17)
+- Estrogen Status positivo → maior sobrevivência (p = 2.82e-16)
+- Estágio tumoral avançado → menor sobrevivência (p = 8.36e-07)
 
 ---
 
@@ -22,250 +28,150 @@ A análise busca responder perguntas como:
 ```text
 marchine-breastcancer/
 │
-├── charts_Images/
-│   ├── 6th_Stage.png
-│   ├── A_Stage.png
-│   ├── averageMaritalStatusSurvival.png
-│   ├── correlationMatriz.png
-│   ├── correlationTumorSizeStatus.png
-│   ├── differentiate.png
-│   ├── Estrogen_Status.png
-│   ├── Grade.png
-│   ├── Marital_Status.png
-│   ├── N_Stage.png
-│   ├── positiveLinfonodos.png
-│   ├── Progesterone_Status.png
-│   ├── Race.png
-│   ├── Status.png
-│   ├── survivorEstrogenStatus.png
-│   ├── T_Stage_.png
-│   └── tumorSizeSurvival.png
+├── assets/
+│   └── charts_images/
+│       ├── correlations/
+│       ├── distributions/
+│       └── variables_categoricals/
+│           └── heatmap/
 │
 ├── data/
 │   └── Breast_Cancer.csv
 │
 ├── docs/
-│   ├── introduction.md
-│   ├── methodology.md
-│   ├── exploratory_analysis.md
-│   ├── hypotheses.md
-│   └── conclusions.md
+│   ├── 00_navegation.md
+│   ├── 01_introduction.md
+│   ├── 02_data_description.md
+│   ├── 03_methodology.md
+│   ├── 04_exploratory_analysis.md
+│   ├── 05_hypotheses.md
+│   ├── 06_conclusions.md
+│   └── 07_mvp_description.md
 │
-├── notebook/
+├── nootebooks/
 │   └── EDA_breast_cancer.ipynb
 │
+├── requeriments.txt
 ├── .gitignore
 └── README.md
 ```
 
 ---
 
-## 💻 Como rodar no seu computador
+## 📊 Dataset
 
-Siga os passos abaixo para executar o projeto localmente.
+Dataset público de pacientes com câncer de mama, disponível no Kaggle.
+
+🔗 [Breast Cancer Dataset — Kaggle](https://www.kaggle.com/datasets/reihanenamdari/breast-cancer)  
+**Autor:** Reihan Enamdari | **Registros:** 4.024 | **Variáveis:** 16 | **Valores nulos:** 0
+
+---
+
+## 🤖 Algoritmos Utilizados
+
+| Algoritmo | Papel | Justificativa |
+|---|---|---|
+| DummyClassifier | Baseline estatístico | Estabelece o piso mínimo de performance sem aprender padrões |
+| Naive Bayes | Modelo 1 | Modelo probabilístico simples e eficiente para classificação binária |
+| Random Forest | Modelo 2 | Ensemble robusto a outliers e não-linearidades |
+| XGBoost | Modelo 3 | Alta performance em dados tabulares desbalanceados |
+
+---
+
+## 📏 Métricas de Avaliação
+
+| Métrica | Justificativa |
+|---|---|
+| **AUC-ROC** | Avalia separação entre classes independente do threshold |
+| **F1-Score** | Equilíbrio entre Precisão e Recall para a classe minoritária |
+| **Recall** | Minimizar falsos negativos — não identificar alto risco é clinicamente crítico |
+| **Precisão** | Controle de falsos alarmes desnecessários |
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+### EDA e Análise Estatística
+- Python, Pandas, NumPy
+- Matplotlib, Seaborn
+- SciPy, Lifelines
+
+### Machine Learning
+- Scikit-learn (DummyClassifier, Naive Bayes, Random Forest)
+- XGBoost
+
+### Aplicação
+- FastAPI — backend da API
+- React Native / Flutter — frontend mobile
+- Jupyter Notebook, PyCharm
+- Git + GitHub
+
+---
+
+## 💻 Como rodar localmente
 
 ### 1. Clonar o repositório
 
 ```bash
 git clone https://github.com/seu-usuario/marchine-breastcancer.git
-```
-
-### 2. Entrar na pasta do projeto
-
-```bash
 cd marchine-breastcancer
 ```
 
-### 3. Criar ambiente virtual
-
-No Windows:
+### 2. Criar ambiente virtual
 
 ```bash
 python -m venv venv
-venv\Scripts\activate
+venv\Scripts\activate        # Windows
+source venv/bin/activate     # Linux/Mac
 ```
 
-### 4. Instalar as dependências
+### 3. Instalar as dependências
 
 ```bash
-pip install pandas numpy matplotlib seaborn scipy notebook
+pip install -r requeriments.txt
 ```
 
-### 5. Abrir o notebook
+### 4. Abrir o notebook
 
 ```bash
 jupyter notebook
 ```
 
-Depois abra:
-
-```text
-notebook/EDA_breast_cancer.ipynb
-```
+Depois abra: `nootebooks/EDA_breast_cancer.ipynb`
 
 ---
 
 ## 📈 Principais Etapas da EDA
 
-### 🔹 Análise Descritiva
-
-Foram calculadas as principais medidas estatísticas:
-
-* média
-* mediana
-* desvio padrão
-* variância
-* amplitude
-* IQR
-
----
-
-### 🔹 Identificação de Outliers
-
-Os outliers foram identificados utilizando o método do **IQR (Intervalo Interquartil)**.
-
-### Resultados encontrados
-
-* **Tumor Size:** 222 outliers altos
-* **Regional Node Examined:** 72 outliers altos
-* **Reginol Node Positive:** 344 outliers altos
-* **Survival Months:** 18 outliers baixos
-
----
-
-### 🔹 Correlação
-
-Foi construída uma matriz de correlação entre as variáveis numéricas.
-
-As principais relações observadas foram:
-
-* maior associação entre linfonodos examinados e positivos
-* relação negativa entre linfonodos positivos e sobrevivência
-
----
-
-## 🧪 Hipóteses Estatísticas
-
-Foram realizados testes estatísticos para validar hipóteses extraídas da EDA.
-
-### 1. Pacientes positivos sobrevivem mais
-
-* **p-valor:** 2.81e-16
-* **Média Positive:** 72.09
-* **Média Negative:** 60.30
-
-✔ Existe diferença significativa
-
----
-
-### 2. Pacientes que morreram tinham tumores maiores
-
-* **p-valor:** 1.23e-17
-* **Média Alive:** 29.27
-* **Média Dead:** 37.14
-
-✔ Existe diferença significativa
-
----
-
-### 3. Pacientes que morreram tinham mais linfonodos positivos
-
-* **p-valor:** 1.52e-61
-* **Média Alive:** 3.60
-* **Média Dead:** 7.24
-
-✔ Existe diferença significativa
-
----
-
-### 4. Pacientes positivos possuem tumores menores
-
-* **p-valor:** 0.00015
-
-✔ Existe diferença significativa
-
----
-
-### 5. O estágio do tumor influencia a sobrevivência
-
-* **p-valor:** 8.36e-07
-
-✔ Existe diferença significativa
-
----
-
-### 6. Pacientes casados sobrevivem mais
-
-* **p-valor:** 0.124
-
-✘ Não existe diferença significativa
-
----
-
-## 📊 Visualizações
-
-### 🔹 Matriz de Correlação
-
-![Matriz de Correlação](../charts_Images/correlationMatriz.png)
-
-### 🔹 Sobrevivência x Tamanho do Tumor
-
-![Tumor Size x Survival](../charts_Images/tumorSizeSurvival.png)
-
-### 🔹 Sobrevivência por Estrogen Status
-
-![Survival Estrogen Status](../charts_Images/survivorEstrogenStatus.png)
-
-### 🔹 Média de Sobrevivência por Estado Civil
-
-![Average Marital Status Survival](../charts_Images/averageMaritalStatusSurvival.png)
-
-### 🔹 Linfonodos Positivos
-
-![Positive Linfonodos](../charts_Images/positiveLinfonodos.png)
-
----
-
-## 📘 Documentação
-
-A documentação detalhada está disponível na pasta `docs/`.
-
-Arquivos incluídos:
-
-* introdução
-* metodologia
-* análise exploratória
-* hipóteses
-* conclusão
-
----
-
-## 🛠 Tecnologias Utilizadas
-
-* Python
-* Pandas
-* NumPy
-* Matplotlib
-* Seaborn
-* SciPy
-* Jupyter Notebook
-* PyCharm
+1. Inspeção inicial do dataset (`shape`, `info`, `describe`)
+2. Verificação de nulos e duplicatas
+3. Análise estatística descritiva
+4. Identificação de outliers via IQR
+5. Matriz de correlação entre variáveis numéricas
+6. Análise de variáveis categóricas e heatmaps de proporção
+7. Visualizações por grupos (boxplots, pairplot, Kaplan-Meier)
+8. Testes de hipóteses (t-test, ANOVA, log-rank)
 
 ---
 
 ## 🚀 Principais Insights
 
-A análise indicou que fatores como:
-
-* tamanho do tumor
-* linfonodos positivos
-* estágio tumoral
-* status hormonal
-
-possuem forte relação com a sobrevivência dos pacientes.
+- Nenhuma variável isolada separa completamente os grupos — o prognóstico é **multifatorial**
+- **Reginol Node Positive** foi a variável com maior diferença entre grupos (pacientes mortos tinham em média o dobro de linfonodos positivos)
+- **Estrogen Status positivo** está associado a 11.79 meses a mais de sobrevivência em média
+- **Estado civil** não apresentou influência estatisticamente significativa
 
 ---
 
-## 👨‍💻 Autor
+## 📋 Metodologia Ágil
 
-Desenvolvido por **Marcelo Júnior**, **Leandro Oliveira** e **Marlon Oliveira**.
+O projeto utiliza **Kanban** via **Trello**:
+
+`Backlog` → `Em progresso` → `Revisão` → `Concluído`
+
+---
+
+## 👨‍💻 Autores
+
+Desenvolvido por **Marcelo Júnior**, **Leandro Oliveira** e **Marlon Oliveira**  
+UNINASSAU Aracaju — Ciência da Computação, 5º Período — 2026.1

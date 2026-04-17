@@ -18,10 +18,10 @@ O câncer de mama é a neoplasia mais incidente entre mulheres no Brasil e no mu
 
 A análise exploratória realizada evidenciou que:
 
-- Pacientes com **maior número de linfonodos positivos** apresentam mortalidade significativamente maior (p < 0.001)
-- **Tumores maiores** estão diretamente associados ao óbito (p < 0.001)
-- O **status hormonal positivo** está correlacionado a maior sobrevivência (p < 0.001)
-- O **estágio tumoral (T Stage)** influencia diretamente o prognóstico (p < 0.001)
+- Pacientes com **maior número de linfonodos positivos** apresentam mortalidade significativamente maior (p = 1.53e-61)
+- **Tumores maiores** estão diretamente associados ao óbito (p = 1.24e-17)
+- O **status hormonal positivo** está correlacionado a maior sobrevivência (p = 2.82e-16)
+- O **estágio tumoral (T Stage)** influencia diretamente o prognóstico (p = 8.36e-07)
 
 Esses achados validam a existência de padrões preditivos nos dados e sustentam a viabilidade de um modelo de classificação de risco.
 
@@ -33,7 +33,7 @@ Esses achados validam a existência de padrões preditivos nos dados e sustentam
 
 ### Participação interdisciplinar
 
-O projeto foi idealizado com contribuição de estudantes de diferentes áreas, incluindo discussões sobre comunicação de risco ao paciente e acolhimento em saúde — aspectos relevantes para garantir que a ferramenta seja não apenas tecnicamente precisa, mas também humanizada e ética no contexto clínico.
+A concepção do projeto contou com a contribuição de Maria Vitória Alves Hora, aluna do curso de Auxiliar Veterinário da PetUniverso, cuja participação trouxe uma perspectiva valiosa sobre comunicação e acolhimento em contextos de saúde. A partir de sua experiência com tutores em situações de diagnóstico e tratamento animal, Maria Vitória contribuiu com reflexões sobre como profissionais de saúde devem comunicar riscos de forma clara, empática e acessível — evitando linguagem técnica excessiva e priorizando o bem-estar emocional do paciente e de seus familiares. Essa visão influenciou diretamente a forma como o projeto aborda a exibição dos resultados na aplicação mobile: em vez de expor apenas valores numéricos do modelo, a interface foi pensada para apresentar o perfil de risco (baixo, moderado ou alto) de maneira humanizada, considerando o impacto que essa informação pode ter sobre quem a recebe.
 
 ---
 
@@ -41,18 +41,18 @@ O projeto foi idealizado com contribuição de estudantes de diferentes áreas, 
 
 ### Tema da Aplicação
 
-Predição de risco de agravamento do câncer de mama com base em variáveis clínicas, utilizando Machine Learning aplicado a dados reais de pacientes.
+Predição de risco de agravamento do câncer de mama com base em variáveis clínicas, utilizando Machine Learning supervisionado aplicado a dados reais de pacientes.
 
 ### Algoritmos que serão utilizados
 
-| Algoritmo | Justificativa |
-|---|---|
-| Regressão Logística | Baseline interpretável, ideal para variável binária (Alive/Dead) |
-| Random Forest | Robusto a outliers, captura relações não-lineares |
-| XGBoost | Alta performance em dados tabulares desbalanceados |
-| Cox Proportional Hazards | Análise de sobrevivência com variáveis de tempo |
+| Algoritmo | Papel | Justificativa |
+|---|---|---|
+| DummyClassifier | Baseline estatístico | Classifica com base na distribuição das classes sem aprender padrões. Estabelece o piso mínimo de performance — qualquer modelo real deve superá-lo para ser considerado válido |
+| Naive Bayes | Modelo 1 | Modelo probabilístico baseado no Teorema de Bayes. Simples, rápido e eficiente para classificação binária |
+| Random Forest | Modelo 2 | Ensemble baseado em árvores, robusto a outliers e não-linearidades |
+| XGBoost | Modelo 3 | Gradient boosting de alta performance em dados tabulares desbalanceados |
 
-A escolha final será baseada na comparação de métricas após os experimentos.
+A escolha do modelo final será baseada na comparação de métricas após os experimentos.
 
 ### Métricas de avaliação escolhidas e justificadas
 
@@ -61,10 +61,9 @@ Dado o **desbalanceamento do dataset** (predominância de pacientes Alive), mét
 | Métrica | Justificativa |
 |---|---|
 | **AUC-ROC** | Avalia a separação entre classes independente do threshold |
-| **F1-Score** | Equilíbrio entre precisão e recall, essencial para classe minoritária |
-| **Recall (Sensibilidade)** | Prioridade em minimizar falsos negativos — não identificar um paciente de alto risco é crítico |
-| **Precisão** | Evitar alarmes falsos que causem ansiedade desnecessária |
-| **Log-Loss** | Avalia a qualidade das probabilidades geradas pelo modelo |
+| **F1-Score** | Equilíbrio entre Precisão e Recall para a classe minoritária |
+| **Recall** | Prioridade em minimizar falsos negativos — não identificar um paciente de alto risco é clinicamente crítico |
+| **Precisão** | Controle de falsos alarmes desnecessários |
 
 ### Cronograma com metas e prazos
 
@@ -73,7 +72,7 @@ Dado o **desbalanceamento do dataset** (predominância de pacientes Alive), mét
 | **Fase 1** | EDA e análise exploratória | ✅ Concluído |
 | **Fase 2** | Pré-processamento e feature engineering | Semana 1–2 |
 | **Fase 3** | Treinamento e comparação de modelos | Semana 3–4 |
-| **Fase 4** | Avaliação, ajuste de hiperparâmetros | Semana 5 |
+| **Fase 4** | Avaliação e ajuste de hiperparâmetros | Semana 5 |
 | **Fase 5** | Desenvolvimento do MVP mobile | Semana 6–8 |
 | **Fase 6** | Testes, validação e apresentação | Semana 9–10 |
 
@@ -85,6 +84,7 @@ O projeto utiliza **Kanban** como metodologia ágil, com colunas:
 
 As tarefas são gerenciadas via **Trello**, com sprints semanais e revisão de progresso a cada entrega parcial.
 
+Trello (breast-cancer-marchine): https://trello.com/b/GI5CWSvG/breast-cancer-marchine
 ### Definição mobile
 
 A aplicação será desenvolvida para plataforma **mobile**, com as seguintes características:
@@ -92,8 +92,7 @@ A aplicação será desenvolvida para plataforma **mobile**, com as seguintes ca
 - Interface de entrada de dados clínicos (formulário guiado)
 - Processamento do modelo via API backend (Python/FastAPI)
 - Exibição do perfil de risco com indicador visual (baixo / moderado / alto)
-- Gráfico de fatores mais relevantes para o resultado (SHAP values simplificados)
-- Compatível com Android e iOS via **React Native** ou **Flutter**
+- Compatível com Android e iOS via **Flutter**
 
 ---
 
@@ -106,10 +105,9 @@ A aplicação será desenvolvida para plataforma **mobile**, com as seguintes ca
 | **Análise de dados** | Python, Pandas, NumPy | Manipulação e transformação dos dados |
 | **Visualização** | Matplotlib, Seaborn | Gráficos e análises visuais |
 | **Estatística** | SciPy, Lifelines | Testes de hipótese e análise de sobrevivência |
-| **Machine Learning** | Scikit-learn, XGBoost | Treinamento e avaliação dos modelos |
-| **Interpretabilidade** | SHAP | Explicação das predições do modelo |
+| **Machine Learning** | Scikit-learn, XGBoost | Treinamento e avaliação dos modelos (DummyClassifier, Naive Bayes, Random Forest, XGBoost) |
 | **Backend da API** | FastAPI (Python) | Exposição do modelo como serviço REST |
-| **Frontend mobile** | React Native / Flutter | Interface do usuário mobile |
+| **Frontend mobile** | Flutter | Interface do usuário mobile |
 | **Ambiente de desenvolvimento** | Jupyter Notebook, PyCharm | EDA e desenvolvimento |
 | **Versionamento** | Git + GitHub | Controle de versão e colaboração |
 
@@ -117,7 +115,7 @@ A aplicação será desenvolvida para plataforma **mobile**, com as seguintes ca
 
 A implementação é tecnicamente viável pelos seguintes fatores:
 
-- O dataset utilizado é público, estruturado e contém 4.024 registros com 16 variáveis clínicas relevantes, volume suficiente para treinamento de modelos supervisionados
+- O dataset utilizado é público do _Keaggle_, estruturado e contém 4.024 registros com 16 variáveis clínicas relevantes, volume suficiente para treinamento de modelos supervisionados
 - Todas as ferramentas são **open-source e gratuitas**, sem necessidade de infraestrutura paga na fase de desenvolvimento
 - A análise exploratória confirmou **padrões estatisticamente significativos** entre as variáveis e o desfecho, validando a hipótese de que um modelo preditivo é treinável com esses dados
 - A execução local não demanda GPU ou hardware especializado para os algoritmos selecionados
@@ -138,3 +136,8 @@ A EDA foi realizada integralmente em notebook Jupyter (`nootebooks/EDA_breast_ca
 9. Testes de hipóteses estatísticas (t-test, ANOVA, log-rank)
 
 Os principais achados estão documentados em `docs/04_exploratory_analysis.md` e `docs/05_hypotheses.md`.
+
+### Fonte do Dataset
+
+🔗 Breast Cancer Dataset — Kaggle: https://www.kaggle.com/datasets/reihanenamdari/breast-cancer  
+**Autor:** Reihan Enamdari | **Uso:** educacional e análise preditiva

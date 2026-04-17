@@ -2,155 +2,109 @@
 
 Com base na análise exploratória, foram formuladas hipóteses estatísticas para investigar a relação entre variáveis clínicas e o tempo de sobrevivência dos pacientes.
 
-Foi adotado nível de significância de:
-
-$$
-\alpha = 0.05
-$$
-
-\alpha = 0.05
-
-Quando:
-
-$$
-p < 0.05
-$$
-
-p < 0.05
-
-considera-se que existe diferença estatisticamente significativa.
+Foi adotado nível de significância de $\alpha = 0.05$. Quando $p < 0.05$, considera-se que existe diferença estatisticamente significativa entre os grupos.
 
 ---
 
-## 🎯 Hipótese 1 — Pacientes positivos sobrevivem mais?
+## 🎯 Hipótese 1 — Pacientes com Estrogen Status positivo sobrevivem mais?
 
-### Resultado
+**Teste utilizado:** t de Student (comparação de médias entre dois grupos independentes)
 
-* **p-valor:** 2.8191768683102073e-16
-* **Média Positive:** 72.09 meses
-* **Média Negative:** 60.30 meses
+| Grupo | Média de Sobrevivência |
+|---|---|
+| Estrogen Status Positive | 72.09 meses |
+| Estrogen Status Negative | 60.30 meses |
 
-### Conclusão
+**p-valor:** 2.82e-16
 
-Existe diferença estatisticamente significativa entre os grupos.
-
-Como a média dos pacientes com **Estrogen Status positivo** é superior, conclui-se que:
-
-> pacientes positivos sobrevivem mais, em média.
+**Conclusão:** Existe diferença estatisticamente significativa. Pacientes com Estrogen Status positivo sobrevivem em média **11.79 meses a mais** do que os negativos, sugerindo que o status hormonal é um fator protetor relevante.
 
 ---
 
 ## 🎯 Hipótese 2 — Pacientes que morreram tinham tumores maiores?
 
-### Resultado
+**Teste utilizado:** t de Student
 
-* **p-valor:** 1.2377493765575529e-17
-* **Média Alive:** 29.27
-* **Média Dead:** 37.14
+| Grupo | Média do Tumor (mm) |
+|---|---|
+| Alive | 29.27 |
+| Dead | 37.14 |
 
-### Conclusão
+**p-valor:** 1.24e-17
 
-Existe diferença estatisticamente significativa entre os grupos.
-
-A média do tamanho do tumor foi maior nos pacientes classificados como `Dead`, indicando que:
-
-> pacientes que morreram apresentavam tumores maiores.
-
-Esse resultado reforça a relevância clínica do tamanho tumoral como fator prognóstico.
+**Conclusão:** Existe diferença estatisticamente significativa. Pacientes que vieram a óbito apresentavam tumores em média **7.87mm maiores**, reforçando o tamanho tumoral como fator prognóstico relevante.
 
 ---
 
 ## 🎯 Hipótese 3 — Pacientes que morreram tinham mais linfonodos positivos?
 
-### Resultado
+**Teste utilizado:** t de Student
 
-* **p-valor:** 1.5290313935284383e-61
-* **Média Alive:** 3.60
-* **Média Dead:** 7.24
+| Grupo | Média de Linfonodos Positivos |
+|---|---|
+| Alive | 3.60 |
+| Dead | 7.24 |
 
-### Conclusão
+**p-valor:** 1.53e-61
 
-Existe diferença estatisticamente significativa entre os grupos.
-
-Pacientes classificados como `Dead` apresentaram maior média de linfonodos positivos.
-
-Portanto:
-
-> maior número de linfonodos positivos está associado a pior prognóstico e menor sobrevida.
-
-Este foi um dos resultados estatisticamente mais fortes da análise.
+**Conclusão:** Existe diferença estatisticamente significativa. Este foi o resultado mais expressivo da análise — pacientes que morreram apresentaram em média **o dobro de linfonodos positivos**, evidenciando o comprometimento nodal como o principal indicador de agravamento da doença.
 
 ---
 
-## 🎯 Hipótese 4 — Pacientes positivos possuem tumores menores?
+## 🎯 Hipótese 4 — Pacientes com Estrogen Status positivo possuem tumores menores?
 
-### Resultado
+**Teste utilizado:** t de Student
 
-* **p-valor:** 0.00015561625114507565
-* **Média Positive:** 30.14
-* **Média Negative:** 35.17
+| Grupo | Média do Tumor (mm) |
+|---|---|
+| Estrogen Status Positive | 30.14 |
+| Estrogen Status Negative | 35.17 |
 
-### Conclusão
+**p-valor:** 1.56e-04
 
-Existe diferença estatisticamente significativa entre os grupos.
-
-Como a média do tamanho tumoral foi menor no grupo positivo, conclui-se que:
-
-> pacientes positivos possuem tumores menores, em média.
-
-Esse resultado pode ajudar a explicar a maior sobrevida observada na hipótese 1.
+**Conclusão:** Existe diferença estatisticamente significativa. Pacientes positivos possuem tumores em média **5.03mm menores**, o que complementa o achado da Hipótese 1 — o melhor prognóstico desse grupo pode estar parcialmente associado à menor progressão tumoral.
 
 ---
 
 ## 🎯 Hipótese 5 — O estágio do tumor influencia a sobrevivência?
 
-### Resultado
+**Teste utilizado:** ANOVA one-way (comparação entre múltiplos grupos)
 
-* **p-valor:** 8.362503589348084e-07
+| Estágio | Média de Sobrevivência |
+|---|---|
+| T1 | 73.56 meses |
+| T2 | 70.30 meses |
+| T3 | 68.89 meses |
+| T4 | 65.75 meses |
 
-### Médias por estágio
+**p-valor:** 8.36e-07
 
-* **T1:** 73.56 meses
-* **T2:** 70.30 meses
-* **T3:** 68.89 meses
-* **T4:** 65.75 meses
-
-### Conclusão
-
-Existe diferença estatisticamente significativa entre os estágios.
-
-Observa-se uma redução progressiva na média de sobrevivência conforme o estágio avança:
-
-$$
-T1 > T2 > T3 > T4
-$$
-
-T1 > T2 > T3 > T4
-
-Portanto:
-
-> estágios tumorais mais avançados influenciam negativamente a sobrevivência.
+**Conclusão:** Existe diferença estatisticamente significativa entre os estágios. Observa-se redução progressiva na sobrevivência conforme o avanço do estágio tumoral ($T1 > T2 > T3 > T4$), confirmando que o estadiamento é um preditor relevante do desfecho clínico.
 
 ---
 
 ## 🎯 Hipótese 6 — Pacientes casados sobrevivem mais?
 
-### Resultado
+**Teste utilizado:** t de Student
 
-* **p-valor:** 0.12477266010236526
-* **Média casados:** 71.98 meses
-* **Média solteiros:** 70.42 meses
+| Grupo | Média de Sobrevivência |
+|---|---|
+| Casados | 71.98 meses |
+| Solteiros | 70.42 meses |
 
-### Conclusão
+**p-valor:** 0.1248
 
-Não foi identificada diferença estatisticamente significativa entre os grupos.
+**Conclusão:** Não existe diferença estatisticamente significativa ($p > 0.05$). Apesar de uma diferença numérica de 1.56 meses, ela não é suficiente para afirmar que o estado civil influencia a sobrevivência. Essa variável tem baixo potencial preditivo para o modelo de ML.
 
-Apesar da média dos pacientes casados ser ligeiramente maior, como:
+---
 
-$$
-p > 0.05
-$$
+## 📌 Síntese dos Resultados
 
-p > 0.05
-
-não é possível afirmar que o estado civil influencia a sobrevivência de forma significativa.
+| Hipótese | Variável | Resultado | Relevância para o modelo |
+|---|---|---|---|
+| H1 | Estrogen Status | ✅ Significativa | Alta |
+| H2 | Tumor Size | ✅ Significativa | Alta |
+| H3 | Reginol Node Positive | ✅ Significativa | Muito alta |
+| H4 | Estrogen Status × Tumor Size | ✅ Significativa | Alta |
+| H5 | T Stage | ✅ Significativa | Alta |
+| H6 | Marital Status | ❌ Não significativa | Baixa |

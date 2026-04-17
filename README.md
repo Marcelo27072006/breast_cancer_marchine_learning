@@ -1,5 +1,9 @@
 # 🧬 Breast Cancer Survival Predictor
 
+![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
+![Python](https://img.shields.io/badge/Python-3.10+-blue)
+![License](https://img.shields.io/badge/Uso-Educacional-green)
+
 Projeto desenvolvido na disciplina de **Machine Learning** — 5º Período de Ciência da Computação — **UNINASSAU Aracaju**, como parte do **1º MVP Data IA Health**, alinhado ao **ODS 3 — Saúde e Bem-Estar** da ONU.
 
 ---
@@ -62,7 +66,8 @@ marchine-breastcancer/
 
 Dataset público de pacientes com câncer de mama, disponível no Kaggle.
 
-🔗 [Breast Cancer Dataset — Kaggle](https://www.kaggle.com/datasets/reihanenamdari/breast-cancer)  
+🔗 Breast Cancer Dataset — Kaggle: https://www.kaggle.com/datasets/reihanenamdari/breast-cancer 
+
 **Autor:** Reihan Enamdari | **Registros:** 4.024 | **Variáveis:** 16 | **Valores nulos:** 0
 
 ---
@@ -102,9 +107,21 @@ Dataset público de pacientes com câncer de mama, disponível no Kaggle.
 
 ### Aplicação
 - FastAPI — backend da API
-- React Native / Flutter — frontend mobile
+- Flutter — frontend mobile
 - Jupyter Notebook, PyCharm
 - Git + GitHub
+
+---
+
+## 📱 Aplicação Mobile
+
+A aplicação será desenvolvida em **React Native / Flutter**, integrada a uma API em **FastAPI**, com as seguintes telas previstas:
+
+- Formulário de entrada de dados clínicos do paciente
+- Tela de resultado com indicador de risco (baixo / moderado / alto)
+- Histórico de avaliações
+
+> Wireframes e descrição completa disponíveis em `docs/07_mvp_description.md`
 
 ---
 
@@ -121,8 +138,8 @@ cd marchine-breastcancer
 
 ```bash
 python -m venv venv
-venv\Scripts\activate        # Windows
-source venv/bin/activate     # Linux/Mac
+Windows: venv\Scripts\activate        
+Linux/Mac: source venv/bin/activate     
 ```
 
 ### 3. Instalar as dependências
@@ -157,7 +174,7 @@ Depois abra: `nootebooks/EDA_breast_cancer.ipynb`
 ## 🚀 Principais Insights
 
 - Nenhuma variável isolada separa completamente os grupos — o prognóstico é **multifatorial**
-- **Reginol Node Positive** foi a variável com maior diferença entre grupos (pacientes mortos tinham em média o dobro de linfonodos positivos)
+- **Reginol Node Positive** foi a variável com maior diferença entre grupos — pacientes mortos tinham em média o dobro de linfonodos positivos
 - **Estrogen Status positivo** está associado a 11.79 meses a mais de sobrevivência em média
 - **Estado civil** não apresentou influência estatisticamente significativa
 
@@ -168,6 +185,8 @@ Depois abra: `nootebooks/EDA_breast_cancer.ipynb`
 O projeto utiliza **Kanban** via **Trello**:
 
 `Backlog` → `Em progresso` → `Revisão` → `Concluído`
+
+Trello: https://trello.com/b/GI5CWSvG/breast-cancer-marchine
 
 ---
 

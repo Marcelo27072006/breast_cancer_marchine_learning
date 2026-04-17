@@ -1,13 +1,13 @@
 # 📘 Documentação do Projeto
 
-Bem-vindo à documentação do projeto **Breast Cancer Survival - EDA**.
+Bem-vindo à documentação do projeto **Breast Cancer Survival - analysis**.
 
 ## Navegação
 
-* [Introdução](introduction.md)
-* [Metodologia](methodology.md)
-* [Análise Exploratória](exploratory_analysis.md)
-* [Descrição completa dos Dados](data_description.md)
-* [Hipóteses Estatísticas](hypotheses.md)
-* [Descrição do MVP](mvp_description.md)
-* [Conclusão](conclusions.md)
+* [Introdução](01_introduction.md)
+* [Descrição completa dos Dados](02_data_description.md)
+* [Metodologia](03_methodology.md)
+* [Análise Exploratória](04_exploratory_analysis.md)
+* [Hipóteses Estatísticas](05_hypotheses.md)
+* [Conclusão](06_conclusions.md)
+* [Descrição do MVP](07_mvp_description.md)

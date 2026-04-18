@@ -128,7 +128,7 @@ A aplicação será desenvolvida em **Flutter**, integrada a uma API em **FastAP
 ### 1. Clonar o repositório
 
 ```bash
-git clone https://github.com/seu-usuario/marchine-breastcancer.git
+git clone https://github.com/Marcelo27072006/breast_cancer_marchine_learning
 cd marchine-breastcancer
 ```
 

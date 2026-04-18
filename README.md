@@ -121,8 +121,6 @@ A aplicação será desenvolvida em **React Native / Flutter**, integrada a uma 
 - Tela de resultado com indicador de risco (baixo / moderado / alto)
 - Histórico de avaliações
 
-> Wireframes e descrição completa disponíveis em `docs/07_mvp_description.md`
-
 ---
 
 ## 💻 Como rodar localmente

@@ -115,7 +115,7 @@ Dataset público de pacientes com câncer de mama, disponível no Kaggle.
 
 ## 📱 Aplicação Mobile
 
-A aplicação será desenvolvida em **React Native / Flutter**, integrada a uma API em **FastAPI**, com as seguintes telas previstas:
+A aplicação será desenvolvida em **Flutter**, integrada a uma API em **FastAPI**, com as seguintes telas previstas:
 
 - Formulário de entrada de dados clínicos do paciente
 - Tela de resultado com indicador de risco (baixo / moderado / alto)

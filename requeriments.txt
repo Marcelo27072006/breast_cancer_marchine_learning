@@ -1,11 +1,4 @@
 # EDA e Análise Estatística
-pandas
-numpy
-matplotlib
-seaborn
-scipy
-jupyter
-
 pandas==2.2.2
 numpy==1.26.4
 matplotlib==3.9.0

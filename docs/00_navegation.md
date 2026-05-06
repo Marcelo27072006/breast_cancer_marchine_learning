@@ -9,5 +9,7 @@ Bem-vindo à documentação do projeto **Breast Cancer Survival - analysis**.
 * [Metodologia](03_methodology.md)
 * [Análise Exploratória](04_exploratory_analysis.md)
 * [Hipóteses Estatísticas](05_hypotheses.md)
-* [Conclusão](06_conclusions-EDA.md)
+* [Conclusão EDA](06_conclusions-EDA.md)
+* [Frontend](07_frontend.md)
+* [Backend](08_backend.md)
 * [Descrição do MVP](09_mvp_description.md)

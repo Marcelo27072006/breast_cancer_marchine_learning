@@ -96,7 +96,7 @@ A aplicação será desenvolvida para plataforma **mobile**, com as seguintes ca
 
 ---
 
-## 4. Notebook com Análise Exploratória dos Dados
+## 3. Notebook com Análise Exploratória dos Dados
 
 ### Tecnologias utilizadas no projeto
 
@@ -115,7 +115,7 @@ A aplicação será desenvolvida para plataforma **mobile**, com as seguintes ca
 
 A implementação é tecnicamente viável pelos seguintes fatores:
 
-- O dataset utilizado é público do _Keaggle_, estruturado e contém 4.024 registros com 16 variáveis clínicas relevantes, volume suficiente para treinamento de modelos supervisionados
+- O dataset utilizado é público do _Kaggle_, estruturado e contém 4.024 registros com 16 variáveis clínicas relevantes, volume suficiente para treinamento de modelos supervisionados
 - Todas as ferramentas são **open-source e gratuitas**, sem necessidade de infraestrutura paga na fase de desenvolvimento
 - A análise exploratória confirmou **padrões estatisticamente significativos** entre as variáveis e o desfecho, validando a hipótese de que um modelo preditivo é treinável com esses dados
 - A execução local não demanda GPU ou hardware especializado para os algoritmos selecionados
@@ -123,7 +123,7 @@ A implementação é tecnicamente viável pelos seguintes fatores:
 
 ### Análise exploratória
 
-A EDA foi realizada integralmente em notebook Jupyter (`nootebooks/EDA_breast_cancer.ipynb`) e cobriu:
+A EDA foi realizada integralmente em notebook Jupyter (`nootebooks/01_EDA.ipynb`) e cobriu:
 
 1. Compreensão da estrutura do dataset (`shape`, `info`, `describe`)
 2. Verificação de dados nulos e duplicados
@@ -132,8 +132,7 @@ A EDA foi realizada integralmente em notebook Jupyter (`nootebooks/EDA_breast_ca
 5. Matriz de correlação e análise de relações entre variáveis
 6. Visualização de variáveis categóricas com heatmaps de proporção
 7. Análise de distribuições por grupos (histogramas, boxplots, pairplot)
-8. Curvas de Kaplan-Meier por Estrogen Status e T Stage
-9. Testes de hipóteses estatísticas (t-test, ANOVA, log-rank)
+8. Testes de hipóteses estatísticas (t-test, ANOVA, log-rank)
 
 Os principais achados estão documentados em `docs/04_exploratory_analysis.md` e `docs/05_hypotheses.md`.
 

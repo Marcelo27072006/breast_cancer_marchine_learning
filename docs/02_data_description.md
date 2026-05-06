@@ -74,7 +74,8 @@ A seguir, são apresentadas as variáveis disponíveis no conjunto de dados:
 - O dataset não apresenta valores nulos, eliminando a necessidade de tratamento de dados ausentes.  
 - As variáveis numéricas permitem análises estatísticas e identificação de outliers.  
 - As variáveis categóricas possibilitam análises comparativas entre grupos.  
-- A variável **Survival Months** é considerada a principal variável de interesse (**target**), sendo utilizada para avaliar o impacto das demais variáveis.
+- A variável **Status** é considerada a principal variável de interesse (**target**), sendo utilizada para avaliar o impacto das demais variáveis.
+- A variável **Survival Months** é utilizada apenas na EDA, sendo removida antes do treinamento por representar dado retrospectivo (data leakage).
 
 ---
 

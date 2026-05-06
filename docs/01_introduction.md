@@ -39,7 +39,7 @@ A análise foi estruturada em duas etapas:
 
 **Etapa 1 — Análise Exploratória de Dados (EDA):** compreensão do comportamento das variáveis, identificação de outliers, análise de correlações, visualizações por grupos e testes de hipóteses estatísticas. Os achados confirmaram padrões significativos entre as variáveis clínicas e o desfecho, validando a viabilidade do modelo preditivo.
 
-**Etapa 2 — Machine Learning:** treinamento e comparação de três algoritmos de classificação (Regressão Logística como baseline, Random Forest e XGBoost), avaliados com métricas adequadas para dados desbalanceados, com integração do modelo final a uma aplicação mobile.
+**Etapa 2 — Machine Learning:** treinamento e comparação de três algoritmos de classificação (DummyClassifier como baseline, Naive Bayes, Random Forest e XGBoost), avaliados com métricas adequadas para dados desbalanceados, com integração do modelo final a uma aplicação mobile.
 
 ---
 

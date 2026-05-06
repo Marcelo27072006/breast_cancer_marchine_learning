@@ -92,7 +92,7 @@ A aplicação será desenvolvida para plataforma **mobile**, com as seguintes ca
 - Interface de entrada de dados clínicos (formulário guiado)
 - Processamento do modelo via API backend (Python/FastAPI)
 - Exibição do perfil de risco com indicador visual (baixo / moderado / alto)
-- Compatível com Android e iOS via **Flutter**
+- Compatível com Android
 
 ---
 
@@ -100,16 +100,16 @@ A aplicação será desenvolvida para plataforma **mobile**, com as seguintes ca
 
 ### Tecnologias utilizadas no projeto
 
-| Camada | Tecnologia | Finalidade |
-|---|---|---|
-| **Análise de dados** | Python, Pandas, NumPy | Manipulação e transformação dos dados |
-| **Visualização** | Matplotlib, Seaborn | Gráficos e análises visuais |
-| **Estatística** | SciPy, Lifelines | Testes de hipótese e análise de sobrevivência |
-| **Machine Learning** | Scikit-learn, XGBoost | Treinamento e avaliação dos modelos (DummyClassifier, Naive Bayes, Random Forest, XGBoost) |
-| **Backend da API** | FastAPI (Python) | Exposição do modelo como serviço REST |
-| **Frontend mobile** | Flutter | Interface do usuário mobile |
+| Camada | Tecnologia                | Finalidade |
+|---|---------------------------|---|
+| **Análise de dados** | Python, Pandas, NumPy     | Manipulação e transformação dos dados |
+| **Visualização** | Matplotlib, Seaborn       | Gráficos e análises visuais |
+| **Estatística** | SciPy, Lifelines          | Testes de hipótese e análise de sobrevivência |
+| **Machine Learning** | Scikit-learn, XGBoost     | Treinamento e avaliação dos modelos (DummyClassifier, Naive Bayes, Random Forest, XGBoost) |
+| **Backend da API** | FastAPI (Python)          | Exposição do modelo como serviço REST |
+| **Frontend mobile** | Kotlin                    | Interface do usuário mobile |
 | **Ambiente de desenvolvimento** | Jupyter Notebook, PyCharm | EDA e desenvolvimento |
-| **Versionamento** | Git + GitHub | Controle de versão e colaboração |
+| **Versionamento** | Git + GitHub              | Controle de versão e colaboração |
 
 ### Viabilidade técnica
 

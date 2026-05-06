@@ -29,36 +29,37 @@ A análise exploratória confirmou padrões estatisticamente significativos que 
 
 ## 📂 Estrutura do Projeto
 
-```text
+```
 marchine-breastcancer/
 │
-├── assets/
-│   └── charts_images/
-│       ├── correlations/
-│       ├── distributions/
-│       └── variables_categoricals/
-│           └── heatmap/
+├── 🖥️  backend/              # API REST — FastAPI
 │
-├── data/
-│   └── Breast_Cancer.csv
+├── 📊  data-science/         # Núcleo de ciência de dados e ML
+│   ├── assets/               # Gráficos e visualizações geradas
+│   ├── data/                 # Dataset bruto (CSV)
+│   ├── models/               # Modelos treinados e serializados
+│   └── notebooks/            # Análises exploratórias (Jupyter)
 │
-├── docs/
-│   ├── 00_navegation.md
-│   ├── 01_introduction.md
-│   ├── 02_data_description.md
-│   ├── 03_methodology.md
-│   ├── 04_exploratory_analysis.md
-│   ├── 05_hypotheses.md
-│   ├── 06_conclusions.md
-│   └── 07_mvp_description.md
+├── 📚  docs/                 # Documentação técnica do projeto
 │
-├── nootebooks/
-│   └── EDA_breast_cancer.ipynb
+├── 📱  frontend/             # Aplicação mobile — Kotlin (Android)
 │
-├── requeriments.txt
 ├── .gitignore
+├── requeriments.txt          # Dependências 
 └── README.md
 ```
+
+### 🗂️ Descrição dos Módulos
+
+| Diretório | Tecnologia | Responsabilidade |
+|---|---|---|
+| `backend/` | FastAPI · Python | API REST que serve as predições do modelo |
+| `data-science/assets/` | Matplotlib · Seaborn | Visualizações e gráficos gerados durante a EDA |
+| `data-science/data/` | CSV | Dataset bruto do Kaggle com 4.024 registros |
+| `data-science/models/` | Pickle / Joblib | Artefatos dos modelos treinados e serializados |
+| `data-science/notebooks/` | Jupyter Notebook | Análise exploratória interativa e reproduzível |
+| `docs/` | Markdown | Documentação técnica completa do projeto |
+| `frontend/` | Kotlin · Android | Aplicação mobile com formulário e resultado de risco |
 
 ---
 
@@ -66,7 +67,7 @@ marchine-breastcancer/
 
 Dataset público de pacientes com câncer de mama, disponível no Kaggle.
 
-🔗 Breast Cancer Dataset — Kaggle: https://www.kaggle.com/datasets/reihanenamdari/breast-cancer 
+🔗 Breast Cancer Dataset — Kaggle: https://www.kaggle.com/datasets/reihanenamdari/breast-cancer
 
 **Autor:** Reihan Enamdari | **Registros:** 4.024 | **Variáveis:** 16 | **Valores nulos:** 0
 
@@ -107,15 +108,15 @@ Dataset público de pacientes com câncer de mama, disponível no Kaggle.
 
 ### Aplicação
 - FastAPI — backend da API
-- Flutter — frontend mobile
-- Jupyter Notebook, PyCharm
+- Kotlin — frontend mobile (Android)
+- Jupyter Notebook, PyCharm, Android Studio
 - Git + GitHub
 
 ---
 
 ## 📱 Aplicação Mobile
 
-A aplicação será desenvolvida em **Flutter**, integrada a uma API em **FastAPI**, com as seguintes telas previstas:
+A aplicação será desenvolvida em **Kotlin**, integrada a uma API em **FastAPI**, com as seguintes telas previstas:
 
 - Formulário de entrada de dados clínicos do paciente
 - Tela de resultado com indicador de risco (baixo / moderado / alto)
@@ -152,7 +153,7 @@ pip install -r requeriments.txt
 jupyter notebook
 ```
 
-Depois abra: `nootebooks/EDA_breast_cancer.ipynb`
+Depois abra: `data-science/notebooks/EDA_breast_cancer.ipynb`
 
 ---
 

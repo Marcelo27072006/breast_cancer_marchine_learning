@@ -1,27 +1,9 @@
-from passlib.context import CryptContext
-from jose import jwt
-from datetime import datetime, timedelta
-from config import SECRET_KEY
+from fastapi import Security, HTTPException
+from fastapi.security.api_key import APIKeyHeader
+from src.core.config import API_KEY
 
-pwd_context = CryptContext(
-    schemes=["bcrypt"],
-    deprecated="auto"
-)
+api_key_header = APIKeyHeader(name="X-API-Key", auto_error=True)
 
-def hash_password(password: str):
-    return pwd_context.hash(password)
-
-def verify_password(password: str, hashed: str):
-    return pwd_context.verify(password, hashed)
-
-def create_token(data: dict):
-
-    payload = data.copy()
-
-    payload["exp"] = datetime.utcnow() + timedelta(hours=2)
-
-    return jwt.encode(
-        payload,
-        SECRET_KEY,
-        algorithm="HS256"
-    )
+def validar_api_key(key: str = Security(api_key_header)):
+    if key != API_KEY:
+        raise HTTPException(status_code=403, detail="API Key inválida")

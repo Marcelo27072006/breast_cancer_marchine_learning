@@ -3,6 +3,7 @@
 ![Status](https://img.shields.io/badge/Status-Em%20Desenvolvimento-yellow)
 ![Python](https://img.shields.io/badge/Python-3.10+-blue)
 ![License](https://img.shields.io/badge/Uso-Educacional-green)
+![Docker](https://img.shields.io/badge/Docker-Containerizado-blue)
 
 Projeto desenvolvido na disciplina de **Machine Learning** — 5º Período de Ciência da Computação — **UNINASSAU Aracaju**, como parte do **1º MVP Data IA Health**, alinhado ao **ODS 3 — Saúde e Bem-Estar** da ONU.
 
@@ -10,7 +11,7 @@ Projeto desenvolvido na disciplina de **Machine Learning** — 5º Período de C
 
 ## 🎯 Objetivo
 
-Desenvolver uma solução baseada em **Aprendizado de Máquina supervisionado** para classificação de risco em pacientes com câncer de mama, prevendo o desfecho clínico — **óbito ou sobrevivência** — com base em variáveis clínicas, tumorais e hormonais. A solução será entregue como uma **aplicação mobile** integrada a um modelo preditivo treinado em Python.
+Desenvolver uma solução baseada em **Aprendizado de Máquina supervisionado** para classificação de risco em pacientes com câncer de mama, prevendo o desfecho clínico — **óbito ou sobrevivência** — com base em variáveis clínicas, tumorais e hormonais. A solução é entregue como uma **aplicação mobile** integrada a uma API REST com modelo preditivo treinado em Python.
 
 ---
 
@@ -32,20 +33,27 @@ A análise exploratória confirmou padrões estatisticamente significativos que 
 ```
 marchine-breastcancer/
 │
-├── 🖥️  backend/              # API REST — FastAPI
+├── 🖥️  backend/                    # API REST — FastAPI + PostgreSQL
+│   ├── src/
+│   │   ├── core/                   # Configuração e segurança (API Key)
+│   │   ├── database/               # Conexão com PostgreSQL via SQLAlchemy
+│   │   └── predict/                # Modelos, schemas, rotas e serviço de predição
+│   ├── Dockerfile
+│   └── requirements.txt
 │
-├── 📊  data-science/         # Núcleo de ciência de dados e ML
-│   ├── assets/               # Gráficos e visualizações geradas
-│   ├── data/                 # Dataset bruto (CSV)
-│   ├── models/               # Modelos treinados e serializados
-│   └── notebooks/            # Análises exploratórias (Jupyter)
+├── 📊  data-science/               # Núcleo de ciência de dados e ML
+│   ├── assets/                     # Gráficos e visualizações geradas
+│   ├── data/                       # Dataset bruto e processado (CSV)
+│   ├── models/                     # Modelos e artefatos serializados (joblib)
+│   └── notebooks/                  # Análises e modelos (Jupyter)
 │
-├── 📚  docs/                 # Documentação técnica do projeto
+├── 📚  docs/                       # Documentação técnica do projeto
 │
-├── 📱  frontend/             # Aplicação mobile — Kotlin (Android)
+├── 📱  frontend/                   # Aplicação mobile — Kotlin (Android)
 │
+├── docker-compose.yml
+├── .env.example
 ├── .gitignore
-├── requeriments.txt          # Dependências 
 └── README.md
 ```
 
@@ -53,11 +61,11 @@ marchine-breastcancer/
 
 | Diretório | Tecnologia | Responsabilidade |
 |---|---|---|
-| `backend/` | FastAPI · Python | API REST que serve as predições do modelo |
+| `backend/` | FastAPI · PostgreSQL · SQLAlchemy | API REST com predição, persistência e hipóteses clínicas |
 | `data-science/assets/` | Matplotlib · Seaborn | Visualizações e gráficos gerados durante a EDA |
-| `data-science/data/` | CSV | Dataset bruto do Kaggle com 4.024 registros |
-| `data-science/models/` | Pickle / Joblib | Artefatos dos modelos treinados e serializados |
-| `data-science/notebooks/` | Jupyter Notebook | Análise exploratória interativa e reproduzível |
+| `data-science/data/` | CSV | Dataset bruto do Kaggle e dados processados |
+| `data-science/models/` | Joblib | Modelos treinados, scaler e label mappings |
+| `data-science/notebooks/` | Jupyter Notebook | EDA, pré-processamento e treinamento dos modelos |
 | `docs/` | Markdown | Documentação técnica completa do projeto |
 | `frontend/` | Kotlin · Android | Aplicação mobile com formulário e resultado de risco |
 
@@ -105,21 +113,58 @@ Dataset público de pacientes com câncer de mama, disponível no Kaggle.
 ### Machine Learning
 - Scikit-learn (DummyClassifier, Naive Bayes, Random Forest)
 - XGBoost
+- Imbalanced-learn (SMOTE)
+
+### Backend
+- FastAPI — API REST
+- SQLAlchemy — ORM
+- PostgreSQL — banco de dados
+- Joblib — serialização dos modelos
+- Autenticação por API Key
 
 ### Aplicação
-- FastAPI — backend da API
 - Kotlin — frontend mobile (Android)
-- Jupyter Notebook, PyCharm, Android Studio
+- Docker + Docker Compose — containerização
+- Jupyter Notebook, PyCharm, Android Studio, VS Code
 - Git + GitHub
+
+---
+
+## 🔌 API — Endpoints
+
+| Método | Rota | Descrição |
+|---|---|---|
+| `GET` | `/` | Health check |
+| `POST` | `/predicao/` | Realiza predição e salva no banco |
+| `GET` | `/predicao/` | Lista todas as predições |
+| `GET` | `/predicao/{id}` | Busca predição por ID |
+
+Todos os endpoints exigem autenticação via header `X-API-Key`.
+
+### Exemplo de resposta
+
+```json
+{
+  "id": 1,
+  "paciente_nome": "João Silva",
+  "predicao": "Alive",
+  "probabilidade": 25.0,
+  "nivel_risco": "baixo",
+  "criado_em": "2026-05-15T01:46:50.664776",
+  "aviso": "As hipóteses apresentadas são baseadas em literatura científica e têm caráter informativo. Não substituem avaliação médica especializada.",
+  "variaveis_impacto": []
+}
+```
 
 ---
 
 ## 📱 Aplicação Mobile
 
-A aplicação será desenvolvida em **Kotlin**, integrada a uma API em **FastAPI**, com as seguintes telas previstas:
+A aplicação é desenvolvida em **Kotlin**, integrada à API em **FastAPI**, com as seguintes telas:
 
 - Formulário de entrada de dados clínicos do paciente
 - Tela de resultado com indicador de risco (baixo / moderado / alto)
+- Hipóteses clínicas baseadas em literatura científica
 - Histórico de avaliações
 
 ---
@@ -133,27 +178,48 @@ git clone https://github.com/Marcelo27072006/breast_cancer_marchine_learning
 cd marchine-breastcancer
 ```
 
-### 2. Criar ambiente virtual
+### 2. Configurar o ambiente
 
 ```bash
-python -m venv venv
-Windows: venv\Scripts\activate        
-Linux/Mac: source venv/bin/activate     
+cp .env.example .env
+# Preencher DATABASE_URL e API_KEY no .env e os dados para acesso do banco
 ```
 
-### 3. Instalar as dependências
+### 3. Rodar com Docker
 
 ```bash
-pip install -r requeriments.txt
+docker-compose up --build -d
 ```
 
-### 4. Abrir o notebook
+A API estará disponível em `http://localhost:8000/docs`.
+
+### 4. Rodar sem Docker
 
 ```bash
+# Data Science
+cd data-science
+pip install -r requirements.txt
 jupyter notebook
+
+# Backend (em outro terminal)
+cd backend
+pip install -r requirements.txt
+python -m uvicorn main:app --reload
 ```
 
-Depois abra: `data-science/notebooks/EDA_breast_cancer.ipynb`
+---
+
+## 🧩 Artefatos do Modelo
+
+Localizados em `data-science/models/`:
+
+| Arquivo | Descrição |
+|---|---|
+| `scaler.joblib` | MinMaxScaler fitado no treino |
+| `label_mappings.joblib` | Mapeamentos do Label Encoding |
+| `random_forest.joblib` | Modelo Random Forest treinado |
+| `naive_bayes.joblib` | Modelo Naive Bayes treinado |
+| `xgboost.joblib` | Modelo XGBoost treinado |
 
 ---
 
@@ -165,7 +231,7 @@ Depois abra: `data-science/notebooks/EDA_breast_cancer.ipynb`
 4. Identificação de outliers via IQR
 5. Matriz de correlação entre variáveis numéricas
 6. Análise de variáveis categóricas e heatmaps de proporção
-7. Visualizações por grupos (boxplots, pairplot, Kaplan-Meier)
+7. Visualizações por grupos (boxplots, pairplot)
 8. Testes de hipóteses (t-test, ANOVA, log-rank)
 
 ---
@@ -191,5 +257,5 @@ Trello: https://trello.com/b/GI5CWSvG/breast-cancer-marchine
 
 ## 👨‍💻 Autores
 
-Desenvolvido por **Marcelo Júnior**, **Leandro Oliveira** e **Marlon Oliveira**  
+Desenvolvido por **Marcelo Júnior**, **Leandro Oliveira** e **Marlon Oliveira**
 UNINASSAU Aracaju — Ciência da Computação, 5º Período — 2026.1

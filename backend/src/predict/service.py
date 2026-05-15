@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 scaler         = joblib.load(BASE_DIR / "data-science/models/scaler.joblib")
 label_mappings = joblib.load(BASE_DIR / "data-science/models/label_mappings.joblib")

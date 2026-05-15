@@ -1,11 +1,13 @@
 from sqlalchemy import Column, Integer, String, Float, DateTime
 from datetime import datetime
 from src.database.connection import Base
+import uuid
+from sqlalchemy.dialects.postgresql import UUID
 
 class Predicao(Base):
     __tablename__ = "predicoes"
 
-    id              = Column(Integer, primary_key=True, index=True)
+    id              = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4, index=True)
     paciente_nome   = Column(String, nullable=False)
     criado_em       = Column(DateTime, default=datetime.utcnow)
 

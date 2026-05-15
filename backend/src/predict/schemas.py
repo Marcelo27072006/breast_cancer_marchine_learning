@@ -1,6 +1,7 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
 from typing import Literal, List
+from uuid import UUID
 
 class VariavelImpacto(BaseModel):
     variavel: str
@@ -31,7 +32,7 @@ class PredicaoInput(BaseModel):
     progesterone_status: Literal["Positive", "Negative"] = Field(..., example="Positive")
 
 class PredicaoOutput(BaseModel):
-    id:             int
+    id:             UUID
     paciente_nome:  str
     predicao:       str
     probabilidade:  float

@@ -5,6 +5,7 @@ from src.predict.schemas import PredicaoInput, PredicaoOutput
 from src.predict.service import realizar_predicao
 from src.predict import repositories
 from src.core.security import validar_api_key
+from uuid import UUID
 
 router = APIRouter()
 
@@ -35,7 +36,7 @@ def listar_predicoes(
 
 @router.get("/{predicao_id}", response_model=PredicaoOutput)
 def buscar_predicao(
-    predicao_id: int,
+    predicao_id: UUID,
     db: Session = Depends(get_db),
     _: str = Depends(validar_api_key)
 ):

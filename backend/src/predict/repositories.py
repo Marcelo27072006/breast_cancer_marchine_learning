@@ -1,6 +1,7 @@
 from sqlalchemy.orm import Session
 from src.predict.models import Predicao
 from src.predict.schemas import PredicaoInput, PredicaoOutput, VariavelImpacto
+from uuid import UUID
 
 def salvar_predicao(db: Session, input: PredicaoInput, resultado: dict) -> Predicao:
     predicao = Predicao(
@@ -32,5 +33,5 @@ def salvar_predicao(db: Session, input: PredicaoInput, resultado: dict) -> Predi
 def listar_predicoes(db: Session) -> list[Predicao]:
     return db.query(Predicao).order_by(Predicao.criado_em.desc()).all()
 
-def buscar_predicao(db: Session, predicao_id: int) -> Predicao:
+def buscar_predicao(db: Session, predicao_id: UUID) -> Predicao:
     return db.query(Predicao).filter(Predicao.id == predicao_id).first()

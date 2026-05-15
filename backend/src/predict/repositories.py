@@ -1,6 +1,6 @@
 from sqlalchemy.orm import Session
 from src.predict.models import Predicao
-from src.predict.schemas import PredicaoInput
+from src.predict.schemas import PredicaoInput, PredicaoOutput, VariavelImpacto
 
 def salvar_predicao(db: Session, input: PredicaoInput, resultado: dict) -> Predicao:
     predicao = Predicao(

@@ -1,6 +1,13 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
-from typing import Literal
+from typing import Literal, List
+
+class VariavelImpacto(BaseModel):
+    variavel: str
+    valor:    str
+    hipotese: str
+    sintomas: List[str]
+    fonte:    str
 
 class PredicaoInput(BaseModel):
     paciente_nome: str = Field(..., example="João Silva")
@@ -30,6 +37,8 @@ class PredicaoOutput(BaseModel):
     probabilidade:  float
     nivel_risco:    str
     criado_em:      datetime
+    aviso:          str = "As hipóteses apresentadas são baseadas em literatura científica e têm caráter informativo. Não substituem avaliação médica especializada."
+    variaveis_impacto: List[VariavelImpacto] = []
 
     class Config:
         from_attributes = True

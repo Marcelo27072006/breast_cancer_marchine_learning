@@ -8,7 +8,7 @@ from src.core.security import validar_api_key
 
 router = APIRouter()
 
-@router.post("/", response_model=PredicaoOutput)
+@router.post("/")
 def criar_predicao(
     input: PredicaoInput,
     db: Session = Depends(get_db),
@@ -16,7 +16,15 @@ def criar_predicao(
 ):
     resultado = realizar_predicao(input.model_dump())
     predicao  = repositories.salvar_predicao(db, input, resultado)
-    return predicao
+    return PredicaoOutput(
+        id                = predicao.id,
+        paciente_nome     = predicao.paciente_nome,
+        predicao          = predicao.predicao,
+        probabilidade     = predicao.probabilidade,
+        nivel_risco       = predicao.nivel_risco,
+        criado_em         = predicao.criado_em,
+        variaveis_impacto = resultado["variaveis_impacto"]
+    )
 
 @router.get("/", response_model=list[PredicaoOutput])
 def listar_predicoes(

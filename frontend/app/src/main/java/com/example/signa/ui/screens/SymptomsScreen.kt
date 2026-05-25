@@ -294,26 +294,20 @@ fun SymptomsBottomNavigation(navController: NavController) {
         NavigationBarItem(
             selected = false,
             onClick  = { navController.navigate("home") { launchSingleTop = true } },
-            icon     = { Icon(Icons.Default.Dashboard, null) },
-            label    = { Text("Dashboard") }
+            icon     = { Icon(Icons.Default.Home, null) },
+            label    = { Text("Início") }
         )
         NavigationBarItem(
-            selected = true,
-            onClick  = {},
-            icon     = { Icon(Icons.Default.Assignment, null) },
-            label    = { Text("Symptoms") }
+            selected = false,
+            onClick  = { navController.navigate("dashboard") { launchSingleTop = true } },
+            icon     = { Icon(Icons.Default.Dashboard, null) },
+            label    = { Text("Dashboard") }
         )
         NavigationBarItem(
             selected = false,
             onClick  = { navController.navigate("history") { launchSingleTop = true } },
             icon     = { Icon(Icons.Default.History, null) },
-            label    = { Text("History") }
-        )
-        NavigationBarItem(
-            selected = false,
-            onClick  = {},
-            icon     = { Icon(Icons.Default.Person, null) },
-            label    = { Text("Profile") }
+            label    = { Text("Histórico") }
         )
     }
 }

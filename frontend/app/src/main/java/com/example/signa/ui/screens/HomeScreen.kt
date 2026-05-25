@@ -191,22 +191,9 @@ fun SignaTopBar(status: PatientStatus) {
     Row(
         modifier = Modifier.fillMaxWidth().statusBarsPadding()
             .padding(horizontal = 20.dp, vertical = 14.dp),
-        horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(verticalAlignment = Alignment.CenterVertically) {
-            Box(modifier = Modifier.size(38.dp).clip(CircleShape).background(Color(0xFFD4A0A0)),
-                contentAlignment = Alignment.Center) {
-                Icon(Icons.Default.Person, null, tint = Color.White, modifier = Modifier.size(22.dp))
-            }
-            Spacer(Modifier.width(10.dp))
-            Text("Signa", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = SignaPurple)
-        }
-        Box(modifier = Modifier.size(38.dp).shadow(4.dp, RoundedCornerShape(12.dp))
-            .clip(RoundedCornerShape(12.dp)).background(Color.White),
-            contentAlignment = Alignment.Center) {
-            Icon(Icons.Default.Person, null, tint = SignaPurple, modifier = Modifier.size(20.dp))
-        }
+        Text("Signa", fontSize = 20.sp, fontWeight = FontWeight.Bold, color = SignaPurple)
     }
 }
 
@@ -404,26 +391,20 @@ fun SignaBottomNavigation(navController: NavController) {
         NavigationBarItem(
             selected = true,
             onClick  = {},
+            icon     = { Icon(Icons.Default.Home, null) },
+            label    = { Text("Início") }
+        )
+        NavigationBarItem(
+            selected = false,
+            onClick  = { navController.navigate("dashboard") { launchSingleTop = true } },
             icon     = { Icon(Icons.Default.Dashboard, null) },
             label    = { Text("Dashboard") }
         )
         NavigationBarItem(
             selected = false,
-            onClick  = { navController.navigate("symptoms") { launchSingleTop = true } },
-            icon     = { Icon(Icons.Default.Assignment, null) },
-            label    = { Text("Symptoms") }
-        )
-        NavigationBarItem(
-            selected = false,
             onClick  = { navController.navigate("history") { launchSingleTop = true } },
             icon     = { Icon(Icons.Default.History, null) },
-            label    = { Text("History") }
-        )
-        NavigationBarItem(
-            selected = false,
-            onClick  = {},
-            icon     = { Icon(Icons.Default.Person, null) },
-            label    = { Text("Profile") }
+            label    = { Text("Histórico") }
         )
     }
 }

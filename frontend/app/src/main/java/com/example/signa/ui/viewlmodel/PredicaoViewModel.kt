@@ -49,6 +49,11 @@ class PredicaoViewModel(application: Application) : AndroidViewModel(application
     // Cache em memória — evita leituras repetidas de SharedPreferences
     private val impactosCache = mutableMapOf<String, List<VariavelImpacto>>()
 
+    // Snapshot do último request enviado — usado pelo Dashboard para exibir
+    // os dados clínicos reais do paciente consultado (não os valores do formulário)
+    private val _ultimoRequest = MutableStateFlow<PredicaoRequest?>(null)
+    val ultimoRequest: StateFlow<PredicaoRequest?> = _ultimoRequest
+
     // ── Campos do formulário ──────────────────────────────────────────────────
     val pacienteNome       = MutableStateFlow("")
     val age                = MutableStateFlow("52")
@@ -73,6 +78,8 @@ class PredicaoViewModel(application: Application) : AndroidViewModel(application
                 _predicaoState.value = PredicaoUiState.Error("Preencha todos os campos corretamente.")
                 return@launch
             }
+            // Salva snapshot para o Dashboard acessar os dados clínicos do paciente
+            _ultimoRequest.value = request
             val result = repository.criarPredicao(request)
             _predicaoState.value = result.fold(
                 onSuccess = { response ->
@@ -109,6 +116,7 @@ class PredicaoViewModel(application: Application) : AndroidViewModel(application
 
     fun resetarEstado() {
         _predicaoState.value = PredicaoUiState.Idle
+        _ultimoRequest.value = null
     }
 
     private fun buildRequest(): PredicaoRequest? = try {

@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.signa.ui.screens.DashboardScreen
 import com.example.signa.ui.screens.HistoryScreen
 import com.example.signa.ui.screens.HomeScreen
 import com.example.signa.ui.screens.PacientesScreen
@@ -37,11 +38,11 @@ class MainActivity : ComponentActivity() {
                         composable("pacientes") {
                             PacientesScreen(navController = navController)
                         }
-                        composable("symptoms") {
-                            SymptomsScreen(navController = navController)
-                        }
                         composable("history") {
                             HistoryScreen(navController = navController)
+                        }
+                        composable("dashboard") {
+                            DashboardScreen(navController = navController)
                         }
                     }
                 }

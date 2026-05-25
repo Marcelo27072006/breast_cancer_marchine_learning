@@ -366,11 +366,5 @@ fun HistoryBottomNavigation(navController: NavController) {
             icon     = { Icon(Icons.Default.History, null) },
             label    = { Text("History") }
         )
-        NavigationBarItem(
-            selected = false,
-            onClick  = {},
-            icon     = { Icon(Icons.Default.Person, null) },
-            label    = { Text("Profile") }
-        )
     }
 }

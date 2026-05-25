@@ -1,41 +1,23 @@
-# Python
-
 **pycache**/
 *.py[cod]
 *$py.class
 
-# Jupyter Notebook
-
 .ipynb_checkpoints/
-
-# Virtual environments
 
 venv/
 env/
 .venv/
 
-# PyCharm
-
 .idea/
 *.iml
-
-# Windows
 
 Thumbs.db
 desktop.ini
 
-# Logs
-
 *.log
-
-# Temporary files
 
 *.tmp
 
-# Environment variables
-
 .env
-
-# OS generated files
 
 .DS_Store

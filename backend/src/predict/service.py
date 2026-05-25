@@ -3,11 +3,11 @@ import numpy as np
 import pandas as pd
 from pathlib import Path
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parents[3]
 
 scaler         = joblib.load(BASE_DIR / "data-science/models/scaler.joblib")
 label_mappings = joblib.load(BASE_DIR / "data-science/models/label_mappings.joblib")
-modelo         = joblib.load(BASE_DIR / "data-science/models/random_forest.joblib")
+modelo         = joblib.load(BASE_DIR / "data-science/models/xgboost.joblib")
 
 ORDINAL_MAPPINGS = {
     "T_Stage":      {"T1": 1, "T2": 2, "T3": 3, "T4": 4},

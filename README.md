@@ -145,7 +145,7 @@ Todos os endpoints exigem autenticação via header `X-API-Key`.
 
 ```json
 {
-  "id": 1,
+  "id": "id_criptografado",
   "paciente_nome": "João Silva",
   "predicao": "Alive",
   "probabilidade": 25.0,

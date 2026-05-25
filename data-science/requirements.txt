@@ -10,3 +10,4 @@ lifelines
 joblib
 jupyter
 notebook
+xgboost

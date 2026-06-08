@@ -257,5 +257,5 @@ Trello: https://trello.com/b/GI5CWSvG/breast-cancer-marchine
 
 ## 👨‍💻 Autores
 
-Desenvolvido por **Marcelo Júnior**, **Leandro Oliveira** e **Marlon Oliveira**
+Desenvolvido por **Marcelo Júnior** e **Leandro Oliveira**
 UNINASSAU Aracaju — Ciência da Computação, 5º Período — 2026.1
